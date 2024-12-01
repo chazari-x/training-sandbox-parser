@@ -47,7 +47,7 @@ type regexps struct {
 func NewParser() *Parser {
 	return &Parser{
 		regexps: &regexps{
-			star:           regexp.MustCompile(`^(\{[a-fA-F0-9]{6}}\*)`),
+			star:           regexp.MustCompile(`^(\{[a-fA-F0-9]{6}}.)`),
 			user:           regexp.MustCompile(`([a-zA-Z0-9[\]()$@._=-]{3,})\((\d+)\):{[a-fA-F0-9]{6}}`),
 			prefix:         regexp.MustCompile(` ({[a-fA-F0-9]{6}}.+){FFFFFF}`),
 			message:        regexp.MustCompile(`\(\d+\):\{[a-fA-F0-9]{6}}(.+)$`),
