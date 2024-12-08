@@ -30,7 +30,7 @@ func New() *Parser {
 func (p *Parser) Parse(text string) (*model.CopChaseList, error) {
 	data := model.CopChaseList{
 		Type:      model.DialogCopChaseListType,
-		Timestamp: int(time.Now().UTC().Unix()),
+		Timestamp: time.Now().UTC().Unix(),
 	}
 
 	matches := p.regexps.lobby.FindAllStringSubmatch(text, -1)

@@ -31,7 +31,7 @@ func (p *Parser) Parse(text string) (*model.MessagePMForBot, error) {
 	var message model.MessagePMForBot
 
 	message.Type = model.ChatMessageTypePMForBot
-	message.Timestamp = int(time.Now().UTC().Unix())
+	message.Timestamp = time.Now().UTC().Unix()
 
 	matches := p.regexps.typePMForBot.FindStringSubmatch(text)
 	if matches == nil {

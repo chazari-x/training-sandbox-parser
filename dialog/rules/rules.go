@@ -29,7 +29,7 @@ func New() *Parser {
 func (p *Parser) Parse(text string) (*model.Rules, error) {
 	var data = model.Rules{
 		Type:      model.DialogRulesType,
-		Timestamp: int(time.Now().UTC().Unix()),
+		Timestamp: time.Now().UTC().Unix(),
 	}
 
 	matches := p.regexps.rule.FindAllStringSubmatch(text, -1)

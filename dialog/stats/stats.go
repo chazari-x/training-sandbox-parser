@@ -48,7 +48,7 @@ func (p *Parser) Parse(text string) (*model.AccountStats, error) {
 	var accountStats model.AccountStats
 
 	accountStats.Type = model.DialogAccountStatsType
-	accountStats.Timestamp = int(time.Now().UTC().Unix())
+	accountStats.Timestamp = time.Now().UTC().Unix()
 
 	matches := p.regexps.account.FindStringSubmatch(text)
 	if matches == nil {

@@ -30,7 +30,7 @@ func (p *Parser) Parse(text string) (*model.MessageSale, error) {
 	var message model.MessageSale
 
 	message.Type = model.ChatMessageTypeSale
-	message.Timestamp = int(time.Now().UTC().Unix())
+	message.Timestamp = time.Now().UTC().Unix()
 
 	matches := p.regexps.typeSale.FindStringSubmatch(text)
 	if matches == nil {

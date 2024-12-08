@@ -30,7 +30,7 @@ func New() *Parser {
 func (p *Parser) Parse(text string) (*model.WorldsList, error) {
 	var data = model.WorldsList{
 		Type:      model.DialogWorldsListType,
-		Timestamp: int(time.Now().UTC().Unix()),
+		Timestamp: time.Now().UTC().Unix(),
 	}
 
 	matches := p.regexps.world.FindAllStringSubmatch(text, -1)

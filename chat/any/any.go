@@ -21,7 +21,7 @@ func (p *Parser) Parse(text string) (*model.MessageAny, error) {
 
 	message.Message = text
 
-	message.Timestamp = int(time.Now().UTC().Unix())
+	message.Timestamp = time.Now().UTC().Unix()
 
 	return &message, nil
 }

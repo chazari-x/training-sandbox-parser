@@ -31,7 +31,7 @@ func (p *Parser) Parse(text string) (*model.MessageSADS, error) {
 	var message model.MessageSADS
 
 	message.Type = model.ChatMessageTypeSADS
-	message.Timestamp = int(time.Now().UTC().Unix())
+	message.Timestamp = time.Now().UTC().Unix()
 
 	matches := p.regexps.typeSADS.FindStringSubmatch(text)
 	if matches == nil {
