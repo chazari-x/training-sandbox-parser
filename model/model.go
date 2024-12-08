@@ -33,7 +33,7 @@ func (t Type) String() string {
 type Rules struct {
 	Type      Type   `json:"type"`      // Тип сообщения
 	Rules     []Rule `json:"rules"`     // Правила
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // Rule - структура правила
@@ -46,7 +46,7 @@ type Rule struct {
 type WorldsList struct {
 	Type      Type    `json:"type"`      // Тип сообщения
 	Worlds    []World `json:"worlds"`    // Миры
-	Timestamp int     `json:"timestamp"` // Время
+	Timestamp int64   `json:"timestamp"` // Время
 }
 
 // World - структура мира
@@ -61,7 +61,7 @@ type World struct {
 type CopChaseList struct {
 	Type      Type    `json:"type"`      // Тип сообщения
 	Lobbies   []Lobby `json:"lobbies"`   // Лобби
-	Timestamp int     `json:"timestamp"` // Время
+	Timestamp int64   `json:"timestamp"` // Время
 }
 
 // Lobby - структура лобби
@@ -80,7 +80,7 @@ type MessageUser struct {
 	Nick      string `json:"nick"`      // NickName игрока
 	ID        int    `json:"id"`        // User
 	AFK       int    `json:"afk"`       // Текст сообщения
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessagePMFromBot - структура сообщения от бота игроку
@@ -90,7 +90,7 @@ type MessagePMFromBot struct {
 	UserID    int    `json:"id"`        // UserID игрока
 	Message   string `json:"message"`   // Текст сообщения
 	AFK       int    `json:"afk"`       // AFK секунды
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessagePMForBot - структура сообщения от игрока боту
@@ -99,28 +99,28 @@ type MessagePMForBot struct {
 	Nick      string `json:"nick"`      // NickName игрока
 	UserID    int    `json:"id"`        // UserID игрока
 	Message   string `json:"message"`   // Текст сообщения
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessageAny - структура сообщения в чате
 type MessageAny struct {
 	Type      Type   `json:"type"`      // Тип сообщения
 	Message   string `json:"message"`   // Текст сообщения
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessageSale - структура сообщения о скидках
 type MessageSale struct {
 	Type      Type   `json:"type"`      // Тип сообщения
 	Message   string `json:"message"`   // Текст сообщения
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessageServer - структура сообщения от сервера
 type MessageServer struct {
 	Type      Type   `json:"type"`      // Тип сообщения
 	Message   string `json:"message"`   // Текст сообщения
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessageASK - структура сообщения в чате вопросов
@@ -129,7 +129,7 @@ type MessageASK struct {
 	Nick      string `json:"nick"`      // NickName игрока
 	UserID    int    `json:"id"`        // UserID игрока
 	Message   string `json:"message"`   // Текст сообщения
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessageADS - структура сообщения в рекламном чате
@@ -138,7 +138,7 @@ type MessageADS struct {
 	Nick      string `json:"nick"`      // NickName игрока
 	UserID    int    `json:"id"`        // UserID игрока
 	Message   string `json:"message"`   // Текст сообщения
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessageWorld - структура сообщения в мире
@@ -149,7 +149,7 @@ type MessageWorld struct {
 	Message   string `json:"message"`   // Текст сообщения
 	Star      string `json:"star"`      // Звезда
 	Prefix    string `json:"prefix"`    // Префикс
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessageGlobal - структура сообщения в глобальном чате
@@ -160,7 +160,7 @@ type MessageGlobal struct {
 	Message   string `json:"message"`   // Текст сообщения
 	Star      string `json:"star"`      // Звезда
 	Prefix    string `json:"prefix"`    // Префикс
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // MessageWarn - структура сообщения о выдаче наказания модератором
@@ -172,7 +172,7 @@ type MessageWarn struct {
 	Punishment string `json:"punishment"` // Наказание (предупреждение, мут, бан, кик)
 	Time       string `json:"time"`       // Минут
 	Until      string `json:"until"`      // До
-	Timestamp  int    `json:"timestamp"`  // Время
+	Timestamp  int64  `json:"timestamp"`  // Время
 }
 
 // MessageSADS - структура сообщения в SADS чате
@@ -181,7 +181,7 @@ type MessageSADS struct {
 	Nick      string `json:"nick"`      // NickName игрока
 	UserID    int    `json:"id"`        // Id игрока
 	Message   string `json:"message"`   // Текст сообщения
-	Timestamp int    `json:"timestamp"` // Время
+	Timestamp int64  `json:"timestamp"` // Время
 }
 
 // AccountStats - структура статистики аккаунта
@@ -199,5 +199,5 @@ type AccountStats struct {
 	Punishments    []string `json:"punishments"`      // Ограничения
 	Verification   string   `json:"verification"`     // Подтверждение аккаунта
 	Achievement    string   `json:"achievement"`      // Достижение
-	Timestamp      int      `json:"timestamp"`        // Время
+	Timestamp      int64    `json:"timestamp"`        // Время
 }
