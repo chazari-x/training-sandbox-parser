@@ -26,7 +26,7 @@ type regexps struct {
 	achievement    *regexp.Regexp
 }
 
-func NewParser() *Parser {
+func New() *Parser {
 	return &Parser{
 		regexps: &regexps{
 			account:        regexp.MustCompile(`\{[a-zA-Z0-9]{6}}Статистика аккаунта:.*\{FFFFFF}(.+) #(\d+).*\n`),
@@ -47,7 +47,7 @@ func NewParser() *Parser {
 func (p *Parser) Parse(text string) (*model.AccountStats, error) {
 	var accountStats model.AccountStats
 
-	accountStats.Type = model.AccountStatsType
+	accountStats.Type = model.DialogAccountStatsType
 	accountStats.Timestamp = int(time.Now().UTC().Unix())
 
 	matches := p.regexps.account.FindStringSubmatch(text)

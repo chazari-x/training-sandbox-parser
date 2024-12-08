@@ -17,7 +17,7 @@ type regexps struct {
 	rule *regexp.Regexp
 }
 
-func NewParser() *Parser {
+func New() *Parser {
 	return &Parser{
 		regexps: &regexps{
 			rule: regexp.MustCompile(`((\{[a-zA-Z0-9]{6}})? *(\d.\d*) *(\{[a-zA-Z0-9]{6}})? *(.+)|.+)\n`),
@@ -28,13 +28,13 @@ func NewParser() *Parser {
 // Parse parses the text and returns the list of rules.
 func (p *Parser) Parse(text string) (*model.Rules, error) {
 	var data = model.Rules{
-		Type:      model.RulesType,
+		Type:      model.DialogRulesType,
 		Timestamp: int(time.Now().UTC().Unix()),
 	}
 
 	matches := p.regexps.rule.FindAllStringSubmatch(text, -1)
 	if matches == nil {
-		return nil, fmt.Errorf("rule not found")
+		return nil, fmt.Errorf("rules not found")
 	}
 
 	for _, match := range matches {

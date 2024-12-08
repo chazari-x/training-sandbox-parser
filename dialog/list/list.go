@@ -18,7 +18,7 @@ type regexps struct {
 	world *regexp.Regexp
 }
 
-func NewParser() *Parser {
+func New() *Parser {
 	return &Parser{
 		regexps: &regexps{
 			world: regexp.MustCompile(`(.+)\s+(\d+)\s+(\[S]|\[ ?S&SMP ?])?\s*\n`),
@@ -29,7 +29,7 @@ func NewParser() *Parser {
 // Parse parses the text and returns the list of worlds.
 func (p *Parser) Parse(text string) (*model.WorldsList, error) {
 	var data = model.WorldsList{
-		Type:      model.WorldsListType,
+		Type:      model.DialogWorldsListType,
 		Timestamp: int(time.Now().UTC().Unix()),
 	}
 
@@ -42,9 +42,7 @@ func (p *Parser) Parse(text string) (*model.WorldsList, error) {
 		var world model.World
 		world.Name = strings.TrimSpace(match[1])
 		world.Players, _ = strconv.Atoi(match[2])
-		if len(match) < 4 {
-			world.Static = false
-		} else {
+		if len(match) >= 4 {
 			world.Static = match[3] == "[S]"
 			world.SSMP = strings.Contains(match[3], "S&SMP")
 		}

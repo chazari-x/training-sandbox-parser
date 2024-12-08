@@ -1,24 +1,27 @@
 package model
 
+// Type - тип обработанного сообщения
 type Type string
 
 const (
-	ChatMessageTypeAds       Type = "CHAT_ADS"         // ChatMessageTypeAds - сообщение в рекламном чате
-	ChatMessageTypeWorld     Type = "CHAT_WORLD"       // ChatMessageTypeWorld - сообщение в мире
-	ChatMessageTypeGlobal    Type = "CHAT_GLOBAL"      // ChatMessageTypeGlobal - сообщение в глобальном чате
-	ChatMessageTypeAsk       Type = "CHAT_ASK"         // ChatMessageTypeAsk - сообщение в чате вопросов
-	ChatMessageTypeWarn      Type = "CHAT_WARN"        // ChatMessageTypeWarn - сообщение о выдаче наказания модератором
-	ChatMessageTypeServer    Type = "CHAT_SERVER"      // ChatMessageTypeServer - сообщение от сервера
-	ChatMessageTypeSale      Type = "CHAT_SALE"        // ChatMessageTypeSale - сообщение о скидках
-	ChatMessageTypeAny       Type = "CHAT_ANY"         // ChatMessageTypeAny - сообщение в чате
-	ChatMessageTypePMForBot  Type = "CHAT_PM_FOR_BOT"  // ChatMessageTypePMForBot - сообщение от игрока боту
-	ChatMessageTypePMFromBot Type = "CHAT_PM_FROM_BOT" // ChatMessageTypePMFromBot - сообщение от бота игроку
-	AccountStatsType         Type = "ACCOUNT_STATS"    // AccountStatsType - статистика аккаунта
-	ChatMessageTypeSADS      Type = "CHAT_SADS"        // ChatMessageTypeSADS - сообщение в SADS чате
-	ChatMessageTypeUser      Type = "CHAT_USER"        // ChatMessageTypeUser - сообщение об игроке
-	WorldsListType           Type = "WORLDS_LIST"      // WorldsListType - список миров
-	CopChaseListType         Type = "COP_CHASE_LIST"   // CopChaseListType - список лобби
-	RulesType                Type = "RULES"            // RulesType - правила
+	Chat                     Type = "CHAT"                  // Chat - сообщение в чате
+	Dialog                   Type = "DIALOG"                // Dialog - диалог
+	ChatMessageTypeAds       Type = "CHAT_ADS"              // ChatMessageTypeAds - сообщение в рекламном чате
+	ChatMessageTypeWorld     Type = "CHAT_WORLD"            // ChatMessageTypeWorld - сообщение в мире
+	ChatMessageTypeGlobal    Type = "CHAT_GLOBAL"           // ChatMessageTypeGlobal - сообщение в глобальном чате
+	ChatMessageTypeAsk       Type = "CHAT_ASK"              // ChatMessageTypeAsk - сообщение в чате вопросов
+	ChatMessageTypeWarn      Type = "CHAT_WARN"             // ChatMessageTypeWarn - сообщение о выдаче наказания модератором
+	ChatMessageTypeServer    Type = "CHAT_SERVER"           // ChatMessageTypeServer - сообщение от сервера
+	ChatMessageTypeSale      Type = "CHAT_SALE"             // ChatMessageTypeSale - сообщение о скидках
+	ChatMessageTypeAny       Type = "CHAT_ANY"              // ChatMessageTypeAny - сообщение в чате
+	ChatMessageTypePMForBot  Type = "CHAT_PM_FOR_BOT"       // ChatMessageTypePMForBot - сообщение от игрока боту
+	ChatMessageTypePMFromBot Type = "CHAT_PM_FROM_BOT"      // ChatMessageTypePMFromBot - сообщение от бота игроку
+	ChatMessageTypeSADS      Type = "CHAT_SADS"             // ChatMessageTypeSADS - сообщение в SADS чате
+	ChatMessageTypeUser      Type = "CHAT_USER"             // ChatMessageTypeUser - сообщение об игроке
+	DialogAccountStatsType   Type = "DIALOG_ACCOUNT_STATS"  // DialogAccountStatsType - статистика аккаунта
+	DialogWorldsListType     Type = "DIALOG_WORLDS_LIST"    // DialogWorldsListType - список миров
+	DialogCopChaseListType   Type = "DIALOG_COP_CHASE_LIST" // DialogCopChaseListType - список лобби
+	DialogRulesType          Type = "DIALOG_RULES"          // DialogRulesType - правила
 )
 
 // String - преобразование типа в строку
