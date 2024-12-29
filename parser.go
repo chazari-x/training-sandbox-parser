@@ -2,7 +2,6 @@ package training_sandbox_parser
 
 import (
 	"regexp"
-	"strings"
 
 	"github.com/chazari-x/training-sandbox-parser/chat/ads"
 	"github.com/chazari-x/training-sandbox-parser/chat/any"
@@ -149,18 +148,13 @@ func (p *Parser) Type(text string) ([]string, model.Type) {
 // Returns:
 // - A model.Type indicating the type of the dialog if a match is found, otherwise an empty string.
 func (p *Parser) DialogType(text string) model.Type {
-	m := strings.Split(text, "\n")
-	if len(m) <= 2 {
-		return ""
-	}
-
-	if matches := p.regexps.dialogTypeStats.FindStringSubmatch(strings.Join(m[1:], "\n")); matches != nil {
+	if matches := p.regexps.dialogTypeStats.FindStringSubmatch(text); matches != nil {
 		return model.DialogAccountStatsType
-	} else if matches = p.regexps.dialogTypeList.FindStringSubmatch(strings.Join(m[1:], "\n")); matches != nil {
+	} else if matches = p.regexps.dialogTypeList.FindStringSubmatch(text); matches != nil {
 		return model.DialogWorldsListType
-	} else if matches = p.regexps.dialogTypeCopChase.FindStringSubmatch(strings.Join(m[1:], "\n")); matches != nil {
+	} else if matches = p.regexps.dialogTypeCopChase.FindStringSubmatch(text); matches != nil {
 		return model.DialogCopChaseListType
-	} else if matches = p.regexps.dialogTypeRules.FindStringSubmatch(strings.Join(m[1:], "\n")); matches != nil {
+	} else if matches = p.regexps.dialogTypeRules.FindStringSubmatch(text); matches != nil {
 		return model.DialogRulesType
 	}
 
