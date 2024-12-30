@@ -175,8 +175,6 @@ func (p *Parser) ChatType(text string) model.Type {
 		return model.ChatMessageTypeAds
 	case p.regexps.chatTypeWorld.FindStringSubmatch(text) != nil:
 		return model.ChatMessageTypeWorld
-	case p.regexps.chatTypeGlobal.FindStringSubmatch(text) != nil:
-		return model.ChatMessageTypeGlobal
 	case p.regexps.chatTypeASK.FindStringSubmatch(text) != nil:
 		return model.ChatMessageTypeAsk
 	case p.regexps.chatTypeWarn.FindStringSubmatch(text) != nil:
@@ -193,6 +191,8 @@ func (p *Parser) ChatType(text string) model.Type {
 		return model.ChatMessageTypeSADS
 	case p.regexps.chatTypeUser.FindStringSubmatch(text) != nil:
 		return model.ChatMessageTypeUser
+	case p.regexps.chatTypeGlobal.FindStringSubmatch(text) != nil:
+		return model.ChatMessageTypeGlobal
 	default:
 		return model.ChatMessageTypeAny
 	}
