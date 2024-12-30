@@ -108,7 +108,7 @@ func New() *Parser {
 			chatTypeUser:       regexp.MustCompile(`^([a-zA-Z0-9[\]()$@._=-]{3,}) \[(\d+)]$|^\*{2} ([a-zA-Z0-9[\]()$@._=-]{3,}) - UserID: (\d+) ?\|? ?A?F?K? ?(\d+)? ?с?е?к?\.?$`),
 			chatTypeSADS:       regexp.MustCompile(`^\[S-ADS #\d+]`),
 			chatTypeWorld:      regexp.MustCompile(`:\{91FF00} *(.+)$`),
-			chatTypeGlobal:     regexp.MustCompile(`:\{[a-zA-Z0-9]{6}} *(.+)$`),
+			chatTypeGlobal:     regexp.MustCompile(`\(\d+\):\{[a-zA-Z0-9]{6}} *(.+)$`),
 			chatTypeADS:        regexp.MustCompile(`^\[ADS]`),
 			chatTypeASK:        regexp.MustCompile(`^\[ASK]`),
 			chatTypeServer:     regexp.MustCompile(`^(\[SERVER]|SERVER):`),
