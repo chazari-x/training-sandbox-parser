@@ -21,7 +21,7 @@ type regexps struct {
 func New() *Parser {
 	return &Parser{
 		regexps: &regexps{
-			typePMForBot: regexp.MustCompile(`^\(\( PM от ((([a-zA-Z0-9[\]()$@._=-]{3,}) \((\d+)\))|(Призрак)): (.+) \)\)$`),
+			typePMForBot: regexp.MustCompile(`^\(\( PM от ((([a-zA-Z0-9[\]()$@._ =-]{3,}) \((\d+)\))|(Призрак)): (.+) \)\)$`),
 		},
 	}
 }
