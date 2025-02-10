@@ -21,7 +21,7 @@ type regexps struct {
 func New() *Parser {
 	return &Parser{
 		regexps: &regexps{
-			lobby: regexp.MustCompile(`#(\d{1,2})\s+(\{[a-zA-Z0-9]{6}}\s*)?((П\W+|В\W+)(\{[a-zA-Z0-9]{6}}))?\s*(\d{1,2}:\d{2})?\s*(\{[a-zA-Z0-9]{6}}\s*)?(\d+(\s-\s\d+)?)\s*(\{[a-zA-Z0-9]{6}}\s*)?(\{[a-zA-Z0-9]{6}}\s*)?(\d)\s/\s(\d)\s*(\{[a-zA-Z0-9]{6}}\s*)?\n`),
+			lobby: regexp.MustCompile(`#(\d{1,2})\s+(\{[a-zA-Z0-9]{6}}\s*)?((П\W+|В\W+)(\{[a-zA-Z0-9]{6}}))?\s*(\d{1,2}:\d{2})?\s*(\{[a-zA-Z0-9]{6}}\s*(\{[a-zA-Z0-9]{6}})?)?(\d+(\s-\s\d+)?)\s*(\{[a-zA-Z0-9]{6}}\s*)?(\{[a-zA-Z0-9]{6}}\s*)?(\d)\s/\s(\d)\s*(\{[a-zA-Z0-9]{6}}\s*)?\n`),
 		},
 	}
 }
@@ -40,14 +40,14 @@ func (p *Parser) Parse(text string) (*model.CopChaseList, error) {
 
 	for _, match := range matches {
 		number, _ := strconv.Atoi(match[1])
-		players, _ := strconv.Atoi(match[12])
-		maxPlayers, _ := strconv.Atoi(match[13])
+		players, _ := strconv.Atoi(match[13])
+		maxPlayers, _ := strconv.Atoi(match[14])
 
 		world := model.Lobby{
 			Number:     number,
 			Status:     strings.TrimSpace(match[4]),
 			Time:       strings.TrimSpace(match[6]),
-			Rating:     strings.TrimSpace(match[8]),
+			Rating:     strings.TrimSpace(match[9]),
 			Players:    players,
 			MaxPlayers: maxPlayers,
 		}
