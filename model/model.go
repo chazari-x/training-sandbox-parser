@@ -186,18 +186,26 @@ type MessageSADS struct {
 
 // AccountStats - структура статистики аккаунта
 type AccountStats struct {
-	Type           Type     `json:"type"`             // Тип сообщения
-	AccountID      int      `json:"account_id"`       // Id аккаунта
-	AccountName    string   `json:"account_name"`     // Имя аккаунта
-	Moderator      bool     `json:"moderator"`        // Статус модератора
-	VIP            string   `json:"vip"`              // VIP статус
-	SocialCredits  float64  `json:"social_credits"`   // Социальные кредиты
-	Warns          int      `json:"warns"`            // Количество предупреждений
-	Kills          int      `json:"kills"`            // Количество убийств
-	Deaths         int      `json:"deaths"`           // Количество смертей
-	CopChaseRating int      `json:"cop_chase_rating"` // Рейтинг CopChase
-	Punishments    []string `json:"punishments"`      // Ограничения
-	Verification   string   `json:"verification"`     // Подтверждение аккаунта
-	Achievement    string   `json:"achievement"`      // Достижение
-	Timestamp      int64    `json:"timestamp"`        // Время
+	Type           Type          `json:"type"`             // Тип сообщения
+	AccountID      int           `json:"account_id"`       // Id аккаунта
+	AccountName    string        `json:"account_name"`     // Имя аккаунта
+	Moderator      bool          `json:"moderator"`        // Статус модератора
+	VIP            string        `json:"vip"`              // VIP статус
+	Premium        int64         `json:"premium"`          // Premium статус
+	SocialCredits  float64       `json:"social_credits"`   // Социальные кредиты
+	Warns          int           `json:"warns"`            // Количество предупреждений
+	Kills          int           `json:"kills"`            // Количество убийств
+	Deaths         int           `json:"deaths"`           // Количество смертей
+	CopChaseRating int           `json:"cop_chase_rating"` // Рейтинг CopChase
+	Punishments    []string      `json:"punishments"`      // Ограничения
+	Verification   string        `json:"verification"`     // Подтверждение аккаунта
+	Achievement    string        `json:"achievement"`      // Достижение
+	Timestamp      int64         `json:"timestamp"`        // Время
+	Descriptions   []Description `json:"descriptions"`     // Росписи модераторов
+}
+
+type Description struct {
+	Date     string `json:"date"`     // Дата
+	NickName string `json:"nickname"` // NickName игрока
+	Text     string `json:"text"`     // Текст сообщения
 }

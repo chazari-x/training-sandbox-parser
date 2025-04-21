@@ -45,6 +45,23 @@ func TestParser_Parse(t *testing.T) {
 Гараж`,
 			wantErr: false,
 		},
+		{
+			name: "2",
+			text: `{FFFFFF}#Лобби  {FFFFFF}Статус  {FFFFFF}Рейтинг: 0  {FFFFFF}Онлайн
+#1     0 - 300  {FFFFFF}0 / 8{FFFFFF}
+#2     0 - 300  {FFFFFF}0 / 8{FFFFFF}
+#3     0 - 300  {FFFFFF}0 / 8{FFFFFF}
+#4  В игре {c97511}9:16{FFFFFF}  {FF0000}20{FFFFFF}  {ff0000}8 / 8{FFFFFF}
+#5     {FF0000}300{FFFFFF}  {FFFFFF}0 / 8{FFFFFF}
+#6     {FF0000}500{FFFFFF}  {FFFFFF}0 / 8{FFFFFF}
+#7     {FF0000}1000{FFFFFF}  {FFFFFF}0 / 8{FFFFFF}
+#8     {FF0000}2000{FFFFFF}  {FFFFFF}0 / 8{FFFFFF}
+#9     {FF0000}3000{FFFFFF}  {FFFFFF}0 / 8{FFFFFF}
+#10     {FF0000}3000{FFFFFF}  {FFFFFF}0 / 8{FFFFFF}
+
+Гараж`,
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
