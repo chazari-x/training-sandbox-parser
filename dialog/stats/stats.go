@@ -19,6 +19,7 @@ type regexps struct {
 	vip            *regexp.Regexp
 	premium        *regexp.Regexp
 	socialCredits  *regexp.Regexp
+	bonusPoints    *regexp.Regexp
 	warns          *regexp.Regexp
 	killsDeaths    *regexp.Regexp
 	copChaseRating *regexp.Regexp
@@ -36,6 +37,7 @@ func New() *Parser {
 			vip:            regexp.MustCompile(`\n\{[a-zA-Z0-9]{6}}\[VIP] (.+) *\n`),
 			premium:        regexp.MustCompile(`\n\{[a-zA-Z0-9]{6}}\[PREMIUM] Подписка активна до (.+).\n`),
 			socialCredits:  regexp.MustCompile(`\n\{[a-zA-Z0-9]{6}}Рейтинг Social Credits.*\{FFFFFF}(-?\d+\.\d+) *\n`),
+			bonusPoints:    regexp.MustCompile(`\n\{[a-zA-Z0-9]{6}}Количество BonusPoints.*\{FFFFFF} *(-?\d+) *\n`),
 			warns:          regexp.MustCompile(`\n\{[a-zA-Z0-9]{6}}Предупреждения.*\{FFFFFF}(\d+) *\n`),
 			killsDeaths:    regexp.MustCompile(`\n\{[a-zA-Z0-9]{6}}Убийств/Смертей.*\{FFFFFF}(\d+)/(\d+) *\n`),
 			copChaseRating: regexp.MustCompile(`\n\{[a-zA-Z0-9]{6}}Рейтинг CopChase.*\{FFFFFF}(-?\d+) *\n`),
@@ -104,7 +106,6 @@ func (p *Parser) Parse(text string) (*model.AccountStats, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	accountStats.Warns = warns
 
 	matches = p.regexps.killsDeaths.FindStringSubmatch(text)
@@ -130,13 +131,21 @@ func (p *Parser) Parse(text string) (*model.AccountStats, error) {
 	if matches == nil {
 		return nil, fmt.Errorf("cop chase rating not found")
 	}
-
 	copChaseRating, err := strconv.Atoi(matches[1])
 	if err != nil {
 		return nil, err
 	}
-
 	accountStats.CopChaseRating = copChaseRating
+
+	matches = p.regexps.bonusPoints.FindStringSubmatch(text)
+	if matches == nil {
+		return nil, fmt.Errorf("bonus points rating not found")
+	}
+	bp, err := strconv.Atoi(matches[1])
+	if err != nil {
+		return nil, err
+	}
+	accountStats.BonusPoints = bp
 
 	matches = p.regexps.punishment.FindStringSubmatch(text)
 	if matches != nil {

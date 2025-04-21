@@ -194,6 +194,7 @@ type AccountStats struct {
 	Premium        int64         `json:"premium"`          // Premium статус
 	SocialCredits  float64       `json:"social_credits"`   // Социальные кредиты
 	Warns          int           `json:"warns"`            // Количество предупреждений
+	BonusPoints    int           `json:"bonusPoints"`      // BonusPoints
 	Kills          int           `json:"kills"`            // Количество убийств
 	Deaths         int           `json:"deaths"`           // Количество смертей
 	CopChaseRating int           `json:"cop_chase_rating"` // Рейтинг CopChase
