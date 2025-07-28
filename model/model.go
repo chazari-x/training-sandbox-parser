@@ -113,6 +113,9 @@ type MessageAny struct {
 type MessageSale struct {
 	Type      Type   `json:"type"`      // Тип сообщения
 	Message   string `json:"message"`   // Текст сообщения
+	Price     string `json:"price"`     // Цена
+	Discount  string `json:"discount"`  // Скидка
+	OldPrice  string `json:"old_price"` // Прошлая цена
 	Timestamp int64  `json:"timestamp"` // Время
 }
 

@@ -3,7 +3,6 @@ package sale
 import (
 	"fmt"
 	"regexp"
-	"strings"
 	"time"
 
 	"github.com/chazari-x/training-sandbox-parser/model"
@@ -14,13 +13,15 @@ type Parser struct {
 }
 
 type regexps struct {
-	typeSale *regexp.Regexp
+	message *regexp.Regexp
+	content *regexp.Regexp
 }
 
 func New() *Parser {
 	return &Parser{
 		regexps: &regexps{
-			typeSale: regexp.MustCompile(`^(\[SALE]|SALE): *(\{[a-fA-F0-9]{6}})?(.+)$`),
+			content: regexp.MustCompile(`^"(.+)": ((\{[a-fA-F0-9]{6}}(\d+р\.)\{[a-fA-F0-9]{6}} \| \{[a-fA-F0-9]{6}}(-?\d+%)\{[a-fA-F0-9]{6}} \| Прошлая цена: \{[a-fA-F0-9]{6}}(\d+р\.))|(\{[a-fA-F0-9]{6}}Скидка: (-?\d+%)))$`),
+			message: regexp.MustCompile(`^\[SALE]: \{[a-fA-F0-9]{6}} *(.+)$`),
 		},
 	}
 }
@@ -32,16 +33,45 @@ func (p *Parser) Parse(text string) (*model.MessageSale, error) {
 	message.Type = model.ChatMessageTypeSale
 	message.Timestamp = time.Now().UTC().Unix()
 
-	matches := p.regexps.typeSale.FindStringSubmatch(text)
+	matches := p.regexps.message.FindStringSubmatch(text)
 	if matches == nil {
-		return nil, fmt.Errorf("sale not found")
+		return nil, fmt.Errorf("sale not found in message: %v", text)
 	}
 
-	if len(matches) < 3 {
-		return nil, fmt.Errorf("message not found: %v", matches)
+	if len(matches) < 2 {
+		return nil, fmt.Errorf("message not found: %v", text)
 	}
 
-	message.Message = strings.TrimSpace(matches[3])
+	message.Message = matches[1]
+
+	matches = p.regexps.content.FindStringSubmatch(message.Message)
+	if matches == nil && message.Message == "" {
+		if message.Message == "" {
+			return nil, fmt.Errorf("sale content not found in message: %v", text)
+		}
+		return &message, nil
+	}
+
+	if len(matches) < 9 {
+		if message.Message == "" {
+			return nil, fmt.Errorf("sale content not found in message: %v", text)
+		}
+		return &message, nil
+	}
+
+	message.Message = matches[1]
+
+	if message.Message == "" {
+		return nil, fmt.Errorf("product name not found in sale message: %v", text)
+	}
+
+	message.Price = matches[4]
+	message.Discount = matches[5]
+	message.OldPrice = matches[6]
+
+	if message.Discount == "" {
+		message.Discount = matches[8]
+	}
 
 	return &message, nil
 }
